@@ -50,8 +50,8 @@ public class Translation {
         switch (pos) {
             case 0 -> posText = "N";
             case 1 -> posText = "V";
-            case 2 -> posText = "Adjectives / Adverbs";
-            case 3 -> posText = "Prepositions / Pronouns";
+            case 2 -> posText = "A";
+            case 3 -> posText = "P";
             case 4 -> posText = "Definitions";
             case 5 -> posText = "Phrases / Collocations";
             case 6 -> posText = "Examples";

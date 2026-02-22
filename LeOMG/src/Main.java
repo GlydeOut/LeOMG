@@ -22,6 +22,8 @@ public class Main extends JPanel {
 
     static boolean displaySubst = true;
     static boolean displayVerb = true;
+    static boolean displayAdjadv = true;
+    static boolean displayPraep = true;
 
     static DefaultListModel<Translation> listModel = new DefaultListModel<>();
     static JList<Translation> translationList = new JList<>(listModel);
@@ -79,23 +81,41 @@ public class Main extends JPanel {
 
         JPanel row3AndAHalf = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JCheckBox substCheckBox = new JCheckBox("Nouns");
-        substCheckBox.setPreferredSize(new Dimension(200, 20));
-        substCheckBox.setMaximumSize(new Dimension(200, 20));
+        substCheckBox.setPreferredSize(new Dimension(150, 30));
+        substCheckBox.setMaximumSize(new Dimension(150, 30));
         substCheckBox.setFont(new Font(substCheckBox.getFont().getFontName(), Font.PLAIN, 25));
         JCheckBox verbCheckBox = new JCheckBox("Verbs");
-        verbCheckBox.setPreferredSize(new Dimension(150, 20));
-        verbCheckBox.setMaximumSize(new Dimension(150, 20));
+        verbCheckBox.setPreferredSize(new Dimension(150, 30));
+        verbCheckBox.setMaximumSize(new Dimension(150, 30));
         verbCheckBox.setFont(new Font(verbCheckBox.getFont().getFontName(), Font.PLAIN, 25));
         substCheckBox.setSelected(displaySubst);
         verbCheckBox.setSelected(displayVerb);
+        JCheckBox adjadvCheckBox = new JCheckBox("Adjectives / Adverbs");
+        adjadvCheckBox.setPreferredSize(new Dimension(325, 30));
+        adjadvCheckBox.setMaximumSize(new Dimension(325, 30));
+        adjadvCheckBox.setFont(new Font(adjadvCheckBox.getFont().getFontName(), Font.PLAIN, 25));
+        JCheckBox praepCheckBox = new JCheckBox("Prepositions / Pronouns");
+        praepCheckBox.setPreferredSize(new Dimension(325, 30));
+        praepCheckBox.setMaximumSize(new Dimension(325, 30));
+        praepCheckBox.setFont(new Font(praepCheckBox.getFont().getFontName(), Font.PLAIN, 25));
+        adjadvCheckBox.setSelected(displayAdjadv);
+        praepCheckBox.setSelected(displayPraep);
         substCheckBox.addActionListener(e -> {
             displaySubst = substCheckBox.isSelected();
         });
         verbCheckBox.addActionListener(e -> {
             displayVerb = verbCheckBox.isSelected();
         });
+        adjadvCheckBox.addActionListener(e -> {
+            displayAdjadv = adjadvCheckBox.isSelected();
+        });
+        praepCheckBox.addActionListener(e -> {
+            displayPraep = praepCheckBox.isSelected();
+        });
         row3AndAHalf.add(substCheckBox);
         row3AndAHalf.add(verbCheckBox);
+        row3AndAHalf.add(adjadvCheckBox);
+        row3AndAHalf.add(praepCheckBox);
 
         JPanel row4 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         listModel = new DefaultListModel<>();
@@ -140,6 +160,8 @@ public class Main extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 subst.clear();
                 verb.clear();
+                adjadv.clear();
+                praep.clear();
                 listModel.clear();
                 try {
                     getTranslations(wordTextField.getText());
@@ -153,6 +175,16 @@ public class Main extends JPanel {
                 }
                 if (displayVerb) {
                     for (Translation t : verb) {
+                        listModel.addElement(t);
+                    }
+                }
+                if (displayAdjadv) {
+                    for (Translation t : adjadv) {
+                        listModel.addElement(t);
+                    }
+                }
+                if (displayPraep) {
+                    for (Translation t : praep) {
                         listModel.addElement(t);
                     }
                 }
